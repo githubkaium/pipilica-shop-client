@@ -38,7 +38,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking }) => {
             status: 'Pending'
         }
         // send to the server
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://still-beyond-28920.herokuapp.com/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -1,13 +1,18 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Bookings from '../Bookings/Bookings';
+import { Typography } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
 
 const DashboardHome = () => {
+    const { admin } = useAuth();
     return (
         <Grid container>
-            <Grid item sx={{ mx: 4 }} xs={12} sm={12} md={12} lg={12}>
-                <Bookings />
-            </Grid>
+            {!admin ?
+                <Typography variant='h4' sx={{ my: 8, mx: 8, color: '#8F7606' }}>THANK YOU FOR SHOPPING !</Typography>
+                :
+                <Typography variant='h4' sx={{ my: 8, mx: 8, color: '#8F7606' }}>WELCOME TO ADMIN PANEL</Typography>
+            }
+
         </Grid>
     );
 };

@@ -7,7 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 import { makeStyles } from '@mui/styles';
 
 const Navigation = () => {
-    const { user, logout } = useAuth();
+    const { user, logout, admin } = useAuth();
     const theme = useTheme();
     const useStyle = makeStyles({
         navItem: {
@@ -40,16 +40,16 @@ const Navigation = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left', color: '#FFDD03' }}>
                         PiPiLiCa Shop
                     </Typography>
-
-                    <NavLink className={navItem} to="/home">
-                        <Button color="inherit">Home</Button>
-                    </NavLink>
-                    <NavLink className={navItem} to="/allproducts">
-                        <Button color="inherit">Explore</Button>
-                    </NavLink>
-
                     {user?.email ?
                         <Box sx={{ color: '#FFDD03' }}>
+                            <NavLink className={navItem} to="/home">
+                                <Button color="inherit">Home</Button>
+                            </NavLink>
+                            {!admin &&
+                                <NavLink className={navItem} to="/allproducts">
+                                    <Button color="inherit">Explore</Button>
+                                </NavLink>
+                            }
                             <NavLink className={navItem} to="/dashboard">
                                 <Button color="inherit">Dashboard</Button>
                             </NavLink>

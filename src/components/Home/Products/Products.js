@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, CircularProgress } from '@mui/material';
 import Product from '../Product/Product';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Footer from '../../Shared/Footer/Footer';
+import useAuth from '../../../hooks/useAuth';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
+    const { isLoading } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://still-beyond-28920.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data));
     }, [])
@@ -18,10 +20,8 @@ const Products = () => {
         <>
             <Navigation />
             <Box sx={{ flexGrow: 1 }}>
-                <Container>
-                    <Typography sx={{ fontWeight: 600, m: 2, color: 'success.main' }} variant="h4" component="div">
-                        ALL PRODUCTS
-                    </Typography>
+                <Container sx={{ my: 4 }}>
+                    {isLoading && <CircularProgress />}
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {
                             products.map(booking => <Product

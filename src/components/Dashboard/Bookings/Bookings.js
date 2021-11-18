@@ -7,7 +7,7 @@ const Bookings = () => {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/bookings?email=${user.email}`
+        const url = `https://still-beyond-28920.herokuapp.com/bookings?email=${user.email}`
         fetch(url, {
             headers: {
                 'authorization': `Bearer ${token}`
@@ -18,7 +18,7 @@ const Bookings = () => {
     }, [user.email, token])
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/bookings/deleteBooking/${id}`, {
+        fetch(`https://still-beyond-28920.herokuapp.com/bookings/deleteBooking/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

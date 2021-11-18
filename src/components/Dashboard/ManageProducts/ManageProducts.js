@@ -5,13 +5,13 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://still-beyond-28920.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/products/deleteProduct/${id}`, {
+        fetch(`https://still-beyond-28920.herokuapp.com/products/deleteProduct/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -27,16 +27,13 @@ const ManageProducts = () => {
     return (
         <>
             <Container>
-                <Typography sx={{ fontWeight: 600, pb: 4, color: '#8F7606' }} variant="h4" component="div">
-                    Manage Products
-                </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {
                         products.map(product => <div
                             key={product._id}
                             product={product}>
                             <Grid item>
-                                <Card sx={{ minWidth: 275, border: 0, boxShadow: 0, mb: 1 }}>
+                                <Card sx={{ minWidth: 275, border: 0, boxShadow: 6, my: 4, ml: 4 }}>
                                     <CardMedia
                                         component="img"
                                         style={{ width: 'auto', height: '200px', margin: '0 auto' }}

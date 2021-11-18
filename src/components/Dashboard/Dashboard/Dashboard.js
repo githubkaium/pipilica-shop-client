@@ -14,6 +14,7 @@ import Pay from '../Pay/Pay';
 import Bookings from '../Bookings/Bookings';
 import ReviewForm from '../Review/ReviewForm/ReviewForm';
 import AllBookings from '../AllBookings/AllBookings';
+import Products from '../../Home/Products/Products';
 
 const drawerWidth = 250;
 
@@ -29,30 +30,29 @@ function Dashboard(props) {
     const drawer = (
         <div>
             <Toolbar />
-
-            <Box>
-                <Divider />
-                <Link style={{ textDecoration: 'none', color: '#464323' }} to="/allProducts"><Button color="inherit">All Products</Button></Link>
-                <Divider />
-                <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
-                <Divider />
-                <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link>
-                <Divider />
-                <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}/pay`}><Button color="inherit">Pay</Button></Link>
-                <Divider />
-                <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}/review`}><Button color="inherit">Review</Button></Link>
-                <Divider />
-            </Box>
-            {admin &&
+            {!admin ?
                 <Box>
                     <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}/pay`}><Button color="inherit">Pay Now</Button></Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#464323' }} to={`${url}/review`}><Button color="inherit">Review Us</Button></Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#464323' }} to="/allProducts"><Button color="inherit">Order More</Button></Link>
+                    <Divider />
+                </Box>
+                :
+                <Box>
                     <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
                     <Divider />
-                    <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to={`${url}/addProduct`}><Button color="inherit">Add Product</Button></Link>
+                    <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to={`${url}/allOrders`}><Button color="inherit">All Orders</Button></Link>
                     <Divider />
                     <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to={`${url}/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
                     <Divider />
-                    <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to={`${url}/allOrders`}><Button color="inherit">All Orders</Button></Link>
+                    <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to={`${url}/addProduct`}><Button color="inherit">Add Product</Button></Link>
+                    <Divider />
+                    <Link style={{ textDecoration: 'none', color: '#AB8E00' }} to="/allProducts"><Button color="inherit">Uploaded Products</Button></Link>
                     <Divider />
                 </Box>
             }
@@ -138,17 +138,20 @@ function Dashboard(props) {
                     <Route path={`${path}/review`}>
                         <ReviewForm />
                     </Route>
+                    <Route path={`${path}/allProducts`}>
+                        <Products />
+                    </Route>
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
                     </AdminRoute>
-                    <AdminRoute path={`${path}/addProduct`}>
-                        <AddProduct />
+                    <AdminRoute path={`${path}/allOrders`}>
+                        <AllBookings />
                     </AdminRoute>
                     <AdminRoute path={`${path}/manageProducts`}>
                         <ManageProducts />
                     </AdminRoute>
-                    <AdminRoute path={`${path}/allOrders`}>
-                        <AllBookings />
+                    <AdminRoute path={`${path}/addProduct`}>
+                        <AddProduct />
                     </AdminRoute>
                 </Switch>
             </Box>

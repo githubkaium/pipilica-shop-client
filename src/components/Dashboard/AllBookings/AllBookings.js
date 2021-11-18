@@ -10,13 +10,13 @@ const AllBookings = () => {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5000/allBookings')
+        fetch('https://still-beyond-28920.herokuapp.com/allBookings')
             .then(res => res.json())
             .then(data => setBookings(data));
     }, [])
 
     const handleUpdate = id => {
-        fetch(`http://localhost:5000/bookings/updateBooking/${id}`, {
+        fetch(`https://still-beyond-28920.herokuapp.com/bookings/updateBooking/${id}`, {
             method: 'PUT',
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ status }),
@@ -25,7 +25,7 @@ const AllBookings = () => {
     }
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/bookings/deleteBooking/${id}`, {
+        fetch(`https://still-beyond-28920.herokuapp.com/bookings/deleteBooking/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -40,7 +40,8 @@ const AllBookings = () => {
 
     return (
         <div>
-            <h2>ALL ORDERS : {bookings.length}</h2>
+            <h3 style={{ fontWeight: 400, pb: 4, color: '#8F7606' }}>ORDERS COUNT : {bookings.length}</h3>
+
             <TableContainer component={Paper}>
                 <Table aria-label="Bookings table">
                     <TableHead>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import BookingModal from '../../Booking/BookingModal/BookingModal';
 import useAuth from '../../../hooks/useAuth';
 
