@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { Button, Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import BookingModal from '../../Booking/BookingModal/BookingModal';
 import useAuth from '../../../hooks/useAuth';
+import { NavLink } from 'react-router-dom';
 
 const Product = ({ booking }) => {
     const { name, description, price, img } = booking;
     const [openBooking, setBookingOpen] = useState(false);
     const handleBookingOpen = () => setBookingOpen(true);
     const handleBookingClose = () => setBookingOpen(false);
-    const { user } = useAuth();
+    const { user, admin } = useAuth();
 
     return (
         <>
@@ -30,16 +31,32 @@ const Product = ({ booking }) => {
                         <Typography variant="body1" component="div">
                             Price: {price}
                         </Typography>
-                        {user?.email &&
-                            <Button onClick={handleBookingOpen} variant="contained" sx={{
-                                mt: 2,
-                                backgroundColor: '#DAAC01',
-                                color: '#fff',
-                                '&:hover': {
-                                    backgroundColor: '#F5C103 ',
-                                    color: '#000',
-                                },
-                            }}>BUY NOW</Button>
+                        {!admin &&
+                            <Box>
+                                {user?.email ?
+                                    <Button onClick={handleBookingOpen} variant="contained" sx={{
+                                        mt: 2,
+                                        backgroundColor: '#DAAC01',
+                                        color: '#fff',
+                                        '&:hover': {
+                                            backgroundColor: '#F5C103 ',
+                                            color: '#000',
+                                        },
+                                    }}>BUY NOW</Button>
+                                    :
+                                    <NavLink style={{ textDecoration: 'none' }} to="/login">
+                                        <Button variant="contained" sx={{
+                                            mt: 2,
+                                            backgroundColor: '#DAAC01',
+                                            color: '#fff',
+                                            '&:hover': {
+                                                backgroundColor: '#F5C103 ',
+                                                color: '#000',
+                                            },
+                                        }}>BUY NOW</Button>
+                                    </NavLink>
+                                }
+                            </Box>
                         }
                     </CardContent>
                 </Card>
