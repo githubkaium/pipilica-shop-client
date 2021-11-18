@@ -40,20 +40,22 @@ const Navigation = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left', color: '#FFDD03' }}>
                         PiPiLiCa Shop
                     </Typography>
-                    {user?.email ?
-                        <Box sx={{ color: '#FFDD03' }}>
-                            <NavLink className={navItem} to="/home">
-                                <Button color="inherit">Home</Button>
+                    <NavLink className={navItem} to="/home">
+                        <Button color="inherit">Home</Button>
+                        {!admin &&
+                            <NavLink className={navItem} to="/allproducts">
+                                <Button color="inherit">Explore</Button>
                             </NavLink>
-                            {!admin &&
-                                <NavLink className={navItem} to="/allproducts">
-                                    <Button color="inherit">Explore</Button>
-                                </NavLink>
-                            }
+                        }
+                    </NavLink>
+                    {user?.email ?
+                        <Box>
                             <NavLink className={navItem} to="/dashboard">
                                 <Button color="inherit">Dashboard</Button>
                             </NavLink>
-                            <Button onClick={logout} color="inherit">Logout</Button>
+                            <NavLink className={navItem} to="/home">
+                                <Button onClick={logout} color="inherit">Logout</Button>
+                            </NavLink>
                         </Box>
                         :
                         <NavLink className={navItem} to="/login">
