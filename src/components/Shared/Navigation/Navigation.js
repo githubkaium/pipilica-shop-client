@@ -62,6 +62,9 @@ const Navigation = () => {
                             <Button color="inherit">Login</Button>
                         </NavLink>
                     }
+                    <Typography variant="body2" component="div" sx={{ color: '#FFDD03' }}>
+                        {user?.displayName}
+                    </Typography>
                 </Toolbar>
             </AppBar>
         </Box >
