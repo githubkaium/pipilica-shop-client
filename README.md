@@ -12,13 +12,11 @@
 * JWT verification enabled.
 
 ### Client Side Code Link :
-https://github.com/githubkaium/pipilica-shop-client-pp
+https://github.com/githubkaium/pipilica-shop-client
 
 ### Server Side Code Link :
-https://github.com/githubkaium/pipilica-shop-server-pp
+https://github.com/githubkaium/pipilica-shop-server
 
 ### Live Website Link :
 https://pipilica-shop.web.app
 
-### Heroku Server Site Link :
-https://still-beyond-28920.herokuapp.com
