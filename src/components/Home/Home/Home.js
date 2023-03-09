@@ -9,36 +9,37 @@ import ProductsBanner from '../ProductsBanner/ProductsBanner';
 import useAuth from '../../../hooks/useAuth';
 
 const Home = () => {
-    const [products, setProducts] = useState([]);
-    const { isLoading } = useAuth();
+  const [products, setProducts] = useState([]);
+  const { isLoading } = useAuth();
 
-    useEffect((() => {
-        fetch('https://still-beyond-28920.herokuapp.com/products')
-            .then(res => res.json())
-            .then(data => setProducts(data));
-    }), [])
+  useEffect(() => {
+    fetch('https://pipilica-shop-server.vercel.app/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
-    return (
-        <>
-            <Navigation />
-            <Banner />
-            {isLoading && <CircularProgress />}
+  return (
+    <>
+      <Navigation />
+      <Banner />
+      {isLoading && <CircularProgress />}
 
-            <Container>
-                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                    {
-                        products.slice(0, 6).map(booking => <Product
-                            key={booking.id}
-                            booking={booking}
-                        ></Product>)
-                    }
-                </Grid>
-            </Container>
-            <ProductsBanner />
-            <Reviews />
-            <Footer />
-        </>
-    );
+      <Container>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {products.slice(0, 6).map((booking) => (
+            <Product key={booking.id} booking={booking}></Product>
+          ))}
+        </Grid>
+      </Container>
+      <ProductsBanner />
+      <Reviews />
+      <Footer />
+    </>
+  );
 };
 
 export default Home;

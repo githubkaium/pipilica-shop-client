@@ -7,34 +7,35 @@ import Footer from '../../Shared/Footer/Footer';
 import useAuth from '../../../hooks/useAuth';
 
 const Products = () => {
-    const [products, setProducts] = useState([]);
-    const { isLoading } = useAuth();
+  const [products, setProducts] = useState([]);
+  const { isLoading } = useAuth();
 
-    useEffect(() => {
-        fetch('https://still-beyond-28920.herokuapp.com/products')
-            .then(res => res.json())
-            .then(data => setProducts(data));
-    }, [])
+  useEffect(() => {
+    fetch('https://pipilica-shop-server.vercel.app/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
 
-    return (
-        <>
-            <Navigation />
-            <Box sx={{ flexGrow: 1 }}>
-                <Container sx={{ my: 4 }}>
-                    {isLoading && <CircularProgress />}
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        {
-                            products.map(booking => <Product
-                                key={booking._id}
-                                booking={booking}
-                            ></Product>)
-                        }
-                    </Grid>
-                </Container>
-            </Box>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Navigation />
+      <Box sx={{ flexGrow: 1 }}>
+        <Container sx={{ my: 4 }}>
+          {isLoading && <CircularProgress />}
+          <Grid
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 4, sm: 8, md: 12 }}
+          >
+            {products.map((booking) => (
+              <Product key={booking._id} booking={booking}></Product>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+      <Footer />
+    </>
+  );
 };
 
 export default Products;
